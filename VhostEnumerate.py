@@ -21,7 +21,7 @@ class vhost():
 
         if not os.path.exists(args.wordlist):
 
-            print(Fore.MAGENTA+"Wordlist Not Found:",args.list)
+            print(Fore.MAGENTA+"Wordlist Not Found:",args.wordlist)
 
             sys.exit()
 
