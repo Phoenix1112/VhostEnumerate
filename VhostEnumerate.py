@@ -4,6 +4,7 @@ import requests
 import argparse
 import threading
 import tldextract
+import validators
 from colorama import *
 from concurrent.futures import ThreadPoolExecutor
 
@@ -91,14 +92,22 @@ class vhost():
         self.keywords.sort()
         self.target_list.sort()
 
+        self.new_urls = []
+
+        for xfilterx in self.target_list:
+            xfilterx = xfilterx.replace("*.", "").replace(".-", "").replace("-.", "")
+
+            if not xfilterx.startswith("https://") and not xfilterx.startswith("http://"):
+                xfilterx = "https://" + xfilterx
+
+            if validators.url(xfilterx):
+                self.new_urls.append(xfilterx)
+
+        del self.target_list
 
         with ThreadPoolExecutor(max_workers=args.thread) as executor:
 
-            for urls in self.target_list:
-
-                if not urls.startswith("https://") and not urls.startswith("http://"):
-
-                    urls = "https://" + urls
+            for urls in self.new_urls:
 
                 for key in self.keywords:
 
@@ -152,8 +161,8 @@ class vhost():
                 if args.output:
                     self.print_now(target)
 
-        except Exception as e:
-            print(Fore.RED+str(e))
+        except:
+            pass
 
     def print_now(self,target):
 
