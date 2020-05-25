@@ -27,3 +27,5 @@ cat urllist.txt | python3 VhostEnumerate.py -s -o output.txt
 ```
 
 # Note = Pipe method will not work if you are using windows. You can run program on windows using the -l or -u parameters. If you are using linux, you can use the program as you wish.
+
+![](https://i.imgyukle.com/2020/05/25/yHenJs.png)
