@@ -132,7 +132,7 @@ class vhost():
 
             fq = tldextract.extract(target[0]).fqdn
 
-            if target[0].startswit("https://"):
+            if target[0].startswith("https://"):
 
                 target[0] = "http://" + fq
 
