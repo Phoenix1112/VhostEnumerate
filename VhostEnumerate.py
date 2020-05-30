@@ -152,7 +152,7 @@ class vhost():
             response1 = requests.get(target[0], headers=header1, allow_redirects=True, verify=False, timeout=int(args.timeout))
             response2 = requests.get(target[0], headers=header2, allow_redirects=True, verify=False,timeout=int(args.timeout))
 
-            if response2.status_code == 200 and len(response1.text) != len(response2.text):
+            if response2.status_code == 200 and len(response1.text) != len(response2.text) and not "All-OK" in response2.text:
 
                 with self.print_lock:
 
